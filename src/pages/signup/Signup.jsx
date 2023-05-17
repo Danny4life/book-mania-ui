@@ -1,3 +1,6 @@
+import signupImg from "../../assets/bookImg.jpg";
+
+
 const Signup = () => {
     return ( 
         <section>
@@ -6,7 +9,7 @@ const Signup = () => {
                 left
             </section>
             <section className="flex-1">
-                right
+                <img src={signupImg} alt="signup-image" />
             </section>
            </section>
         </section>
