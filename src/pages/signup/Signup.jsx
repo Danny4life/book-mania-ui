@@ -1,7 +1,7 @@
 import { useState } from "react";
 import signupImg from "../../assets/bookImg.jpg";
 import FormInput from "../../component/formInput/FormInput";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Signup = () => {
@@ -76,6 +76,8 @@ const Signup = () => {
     const onChange = (event) => {
         setUser({...user, [event.target.name]: event.target.value});
     }
+
+   
 
     return ( 
         <section className="non-italic">
