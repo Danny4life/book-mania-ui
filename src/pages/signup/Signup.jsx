@@ -1,5 +1,7 @@
 import { useState } from "react";
 import signupImg from "../../assets/bookImg.jpg";
+import FormInput from "../../component/formInput/FormInput";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Signup = () => {
@@ -87,7 +89,31 @@ const Signup = () => {
                         Get Started with Bookmania
                     </h2>
                 </div>
-                <form action="/" method="/"></form>
+                <form action="/" method="/">
+                {inputs.map((input) => (
+                    <FormInput key={input.id} {...input}  values={user[input.name]}
+                        onChange={onChange}
+                        className="py-2 px-2"
+                    />
+                    ))}
+                     <div className="non-italic">
+                           <div className="lg:ml-48 non-italic ml-6">
+                            <button 
+                            type="submit"
+                            className="w-[18rem] mb-12 mt-10 ml-2 lg:ml-0 
+                            text-base font-bold text-[#FFFFFF] leading-4 lg:w-[24.688rem] h-[3rem] bg-[#4361EE] rounded-md py-2 px-2"
+                            
+                            >
+                                Sign Up
+                            </button>
+                           </div>
+                           <div className="lg:ml-48 ml-6">
+                             <Link to="/login" className="text-base font-normal text-[#000000] leading-6 cursor-pointer">
+                                Already have an account? <a className="font-bold">Login</a>
+                            </Link>
+                           </div>
+                        </div> 
+                </form>
             </section>
             <section className="md:flex-1 hidden lg:flex">
                 <img src={signupImg} alt="signup-image" className="" />
