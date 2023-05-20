@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
 
-    const [user, setUser] = useState({
+    const [userDto, setUserDto] = useState({
         id : "",
         firstname : "",
         lastname : "",
@@ -24,7 +24,7 @@ const Signup = () => {
             errorMessage: "First name must be enter!",
             label : "First Name",
             pattern : "^[A-Za-z0-9]{3,16}$",
-            value : user.firstname,
+            value : userDto.firstname,
             required: true,
         },
         {
@@ -35,7 +35,7 @@ const Signup = () => {
             errorMessage: "Last name must be enter!",
             label : "Last Name",
             pattern : "^[A-Za-z0-9]{3,16}$",
-            value : user.lastname,
+            value : userDto.lastname,
             required: true,
         },
         {
@@ -45,7 +45,7 @@ const Signup = () => {
             placeholder : "Enter your email",
             errorMessage : "it should be a valid email address!",
             label : "Email",
-            value : user.email,
+            value : userDto.email,
             required: true,
         },
         {
@@ -56,7 +56,7 @@ const Signup = () => {
             errorMessage : "Password should be 8-20 characters and includes atleast 1 letter, 1 number, and 1 special character",
             label : "Password",
             pattern :`^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-            value : user.password,
+            value : userDto.password,
             required: true,
         },
     
@@ -67,14 +67,14 @@ const Signup = () => {
             placeholder : "Confirm Password",
             errorMessage : "password don't match!",
             label : "Confirm Password",
-            pattern : user.password,
+            pattern : userDto.password,
             required: true,
         }
           
     ]
 
     const onChange = (event) => {
-        setUser({...user, [event.target.name]: event.target.value});
+        setUserDto({...userDto, [event.target.name]: event.target.value});
     }
 
    
@@ -93,7 +93,7 @@ const Signup = () => {
                 </div>
                 <form action="/" method="/">
                 {inputs.map((input) => (
-                    <FormInput key={input.id} {...input}  values={user[input.name]}
+                    <FormInput key={input.id} {...input}  values={userDto[input.name]}
                         onChange={onChange}
                         className="py-2 px-2"
                     />
