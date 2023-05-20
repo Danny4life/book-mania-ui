@@ -2,6 +2,7 @@ import { useState } from "react";
 import signupImg from "../../assets/bookImg.jpg";
 import FormInput from "../../component/formInput/FormInput";
 import { Link } from "react-router-dom";
+import UserService from "../../services/UserService";
 
 
 const Signup = () => {
@@ -73,8 +74,19 @@ const Signup = () => {
           
     ]
 
-    const onChange = (event) => {
-        setUserDto({...userDto, [event.target.name]: event.target.value});
+    const onChange = (e) => {
+        setUserDto({...userDto, [e.target.name]: e.target.value});
+    }
+
+    const registerUser = (e) => {
+        e.preventDefault();
+        UserService.registerUser(userDto).then((response) => {
+            setUserDto(response);
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
    
@@ -91,7 +103,7 @@ const Signup = () => {
                         Get Started with Bookmania
                     </h2>
                 </div>
-                <form action="/" method="/">
+                <form action="/" method="/" onSubmit={registerUser}>
                 {inputs.map((input) => (
                     <FormInput key={input.id} {...input}  values={userDto[input.name]}
                         onChange={onChange}
