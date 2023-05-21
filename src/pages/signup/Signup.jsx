@@ -63,7 +63,7 @@ const Signup = () => {
     
         {
             id : 5,
-            name : "confirmpassword",
+            name : "confirmPassword",
             type : "password",
             placeholder : "Confirm Password",
             errorMessage : "password don't match!",
@@ -82,14 +82,14 @@ const Signup = () => {
         e.preventDefault();
         UserService.registerUser(userDto).then((response) => {
             setUserDto(response);
-            console.log(response);
+            //console.log(response);
         })
         .catch((error) => {
             console.log(error);
         })
     }
 
-   
+
 
     return ( 
         <section className="non-italic">
