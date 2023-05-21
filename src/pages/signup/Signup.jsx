@@ -1,11 +1,14 @@
 import { useState } from "react";
 import signupImg from "../../assets/bookImg.jpg";
 import FormInput from "../../component/formInput/FormInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
+import { toast } from "react-toastify";
 
 
 const Signup = () => {
+
+    const navigate = useNavigate();
 
     const [userDto, setUserDto] = useState({
         id : "",
@@ -82,7 +85,24 @@ const Signup = () => {
         e.preventDefault();
         UserService.registerUser(userDto).then((response) => {
             setUserDto(response);
+            
             //console.log(response);
+
+            if(response.data.message == "Email Already Exists"){
+                toast.error("Email Already Exists");
+               
+
+            }else if(response.data == "Account Created Successfully"){
+               
+                setTimeout(() => {
+                    navigate("/login");
+                }, 3000);
+
+                toast.success("Account Created Successfully");
+                
+            }
+        }, fail => {
+            console.error(fail);
         })
         .catch((error) => {
             console.log(error);
@@ -96,10 +116,10 @@ const Signup = () => {
            <section className="md:flex">
             <section className="md:flex-1">
                 <div>
-                    <h1 className="pt-12 ml-6 mb-20 text-4xl font-bold leading-7 text-[#012A4A] lg:pt-40 lg:ml-48">
+                    <h1 className="pt-12 ml-6 mb-12 text-4xl font-bold leading-7 text-[#012A4A] lg:pt-32 lg:ml-48">
                         Bookmania
                     </h1>
-                    <h2 className="ml-6 mb-8 text-2xl font-bold text-[#000000] leading-7 lg:ml-48">
+                    <h2 className="ml-6 mb-4 text-2xl font-bold text-[#000000] leading-7 lg:ml-48">
                         Get Started with Bookmania
                     </h2>
                 </div>
