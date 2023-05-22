@@ -84,7 +84,7 @@ const Login = () => {
                             </button>
                            </div>
                            <div className="lg:ml-48 ml-6">
-                             <Link to="/signup" className="text-base font-normal text-[#000000] leading-6 cursor-pointer">Don't have an account? <a className="text-base font-bold leading-6 text-[#4361EE]">Create an account</a></Link>
+                             <Link to="/" className="text-base font-normal text-[#000000] leading-6 cursor-pointer">Don&apos;t have an account? <a className="text-base font-bold leading-6 text-[#4361EE]">Create an account</a></Link>
                            </div>
                         </div>
                     </form>
