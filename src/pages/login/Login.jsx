@@ -3,6 +3,7 @@ import loginImg from "../../assets/bookImg2.jpg";
 import FormInput from "../../component/formInput/FormInput";
 import { Link, useNavigate } from "react-router-dom";
 import LoginService from "../../services/LoginService";
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -49,6 +50,16 @@ const Login = () => {
     LoginService.loginUser(loginDto).then((response) => {
         setLoginDto(response);
         console.log(response);
+
+        if(response.data.message == "Email does not exists"){
+            toast.error("Email does not exists");
+        } else if(response.data.message == "Login Successful"){
+            navigate("/dashboard");
+        }else {
+            toast.error("Email or Password not match");
+        }
+    }, fail => {
+        console.error(fail);
     })
     .catch((error) => {
         console.log(error);
@@ -70,7 +81,7 @@ const Login = () => {
                             Hi, Welcome Back
                         </h2>
                     </div>
-                    <form action="/" method="/">
+                    <form action="/" method="/" onSubmit={loginUser}>
                     <div className="non-italic">
                             {inputs.map((input) => (
 
