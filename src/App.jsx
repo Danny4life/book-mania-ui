@@ -3,6 +3,7 @@ import Signup from "./pages/signup/Signup"
 import Login from "./pages/login/Login"
 import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from "./pages/dashboard/Dashboard";
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route index="/" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
       </Routes>
       </BrowserRouter>
     </>
