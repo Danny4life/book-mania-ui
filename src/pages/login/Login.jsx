@@ -2,6 +2,7 @@ import { useState } from "react";
 import loginImg from "../../assets/bookImg2.jpg";
 import FormInput from "../../component/formInput/FormInput";
 import { Link, useNavigate } from "react-router-dom";
+import LoginService from "../../services/LoginService";
 
 
 const Login = () => {
@@ -41,6 +42,17 @@ const Login = () => {
 
   const onChange = (e) => {
     setLoginDto({...loginDto, [e.target.name] : e.target.value});
+  }
+
+  const loginUser = (e) => {
+    e.preventDefault();
+    LoginService.loginUser(loginDto).then((response) => {
+        setLoginDto(response);
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
   }
   
     return ( 
