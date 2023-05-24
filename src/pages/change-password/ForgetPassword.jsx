@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import img from "../../assets/bookImg.jpg";
 import FormInput from "../../component/formInput/FormInput";
+import ChangePasswordService from "../../services/ChangePasswordService";
+import { toast } from 'react-toastify';
 
 
 const ForgetPassword = () => {
@@ -56,6 +58,25 @@ const ForgetPassword = () => {
     setPasswordDto({...passwordDto, [e.target.name]: e.target.value});
     
   }
+
+  const changePassword = (e) => {
+    e.preventDefault();
+    ChangePasswordService.changePassword(passwordDto).then((response) => {
+
+        setPasswordDto(response);
+            toast.success("Password changed successfully");  
+            console.log(response);
+
+    })
+    .catch((error) => {
+        console.log(error);    
+    })
+
+    setTimeout(() => {
+        navigate("/login");
+    }, 5000);
+
+  }
     return ( 
         <section>
              <section className="lg:flex">
@@ -71,7 +92,7 @@ const ForgetPassword = () => {
                             Reset Password
                         </h1>
                     </div>
-                    <form action="/" method="/" onSubmit>
+                    <form action="/" method="/" onSubmit={changePassword}>
                         <div className="non-italic">
                             {inputs.map((input) => (
 
