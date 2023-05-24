@@ -65,7 +65,7 @@ const ForgetPassword = () => {
 
         setPasswordDto(response);
     //    toast.success("Password changed successfully"); 
-        console.log(response);
+        //console.log(response);
 
         if(response.data == "Invalid Old Password"){
             toast.error( "Invalid Old Password");
