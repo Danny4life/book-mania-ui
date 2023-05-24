@@ -64,10 +64,18 @@ const ForgetPassword = () => {
     ChangePasswordService.changePassword(passwordDto).then((response) => {
 
         setPasswordDto(response);
-            toast.success("Password changed successfully");  
-            console.log(response);
+    //    toast.success("Password changed successfully"); 
+        console.log(response);
 
-    })
+        if(response.data == "Invalid Old Password"){
+            toast.error( "Invalid Old Password");
+        }else {
+            toast.success("Password changed successfully"); 
+        }
+           
+        }, fail => {
+            console.log(fail);
+        })
     .catch((error) => {
         console.log(error);    
     })
@@ -75,7 +83,6 @@ const ForgetPassword = () => {
     setTimeout(() => {
         navigate("/login");
     }, 5000);
-
   }
     return ( 
         <section>
