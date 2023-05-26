@@ -1,70 +1,60 @@
-import { useState } from "react";
+import { Avatar } from '@mui/material';
+import  { useState } from 'react';
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes} from "react-icons/fa";
-
-const navLinks = [
-    {
-        title : "Home",
-        link : "#",
-    },
-    {
-        title : "Home",
-        link : "#",
-    },
-    {
-        title : "Home",
-        link : "#",
-    },
-    {
-        title : "Home",
-        link : "#",
-    },
-]
 
 const Topbar = () => {
 
-    const [open, setOpen] = useState(false);
+    const [avatarImage, setAvatarImage] = useState(null);
 
-    const handleMenu = () => {
-        setOpen((prev) => !prev);
-    }
+    const handleAvatarClick = () => {
+        // Programmatically trigger the file input click
+        document.getElementById('avatar-input').click();
+      };
+
+      const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+    
+        reader.onload = (e) => {
+          setAvatarImage(e.target.result);
+        };
+    
+        reader.readAsDataURL(file);
+      };
+
     return (  
-        <nav className="font-['Montserrat'] not-italic">
-            <header className="mx-auto px-4 sm:px-6 lg:px-6">
-                <div className="flex items-center justify-between h-[72px] lg:h-[93px]">
-                    <div className="md:ml-12">
-                        <h1 className="text-4xl font-bold leading-9 text-white">BookMania</h1>
-                    </div>
-                    {/* navlinks */}
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-4 md:mr-12">
-                            {navLinks.map((link, index) => (
-                                <Link
-                                key={index}
-                                className="text-white px-3 py-2 cursor-pointer
-                                rounded-md text-base font-['Montserrat'] leading-5 not-italic font-medium 
-                                transition-all duration-500"
-                                href={link.link}
-                                >
-                                    {link.title}
-                                </Link>
-                            ))}
+        <section>
+             <nav className=''>
+                <header className="mx-auto px-4 sm:px-6 lg:px-6">
+                    <div className="flex items-center justify-between h-[72px] lg:h-[93px]">
+                        <div className="md:ml-12">
+                            <Link className="text-4xl font-bold leading-9 text-[#012A4A]" to={"/login"}>BookMania</Link>
                         </div>
+                        <div className="cursor-pointer" onClick={handleAvatarClick}>
+                            <div className='flex items-center space-x-2 md:mr-12'>
+                                {avatarImage ? (
+                                <img src={avatarImage} alt="Avatar"  className="w-[42px] h-[42px] rounded-[50%] bg-[#D9D9D9] object-cover"  />
+                                ) : (    
+                                <span className=''>
+                                    <Avatar />
+                                </span>
+                        
+                                )}
+                                <h3><span className='text-[#012A4A] text-base font-normal'>Segun</span></h3>
+                            </div>  
+                        </div>
+                        <input
+                            id="avatar-input"
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageUpload}
+                        />
                     </div>
-                    {/* hambuger menu */}
-                    <div className="-mr-2 flex md:hidden">
-                        <button type="button" onClick={handleMenu} 
-                        className="inline-flex items-center justify-center p-2 rounded-md
-                        text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                            <span className="sr-only">Open Main Menu</span>
-                            {open == true ? <FaTimes /> : <FaBars />}
-                        </button>
-                    </div>
-                </div>
-            </header>
-            
-        </nav>
+                </header>
+            </nav>
+        </section>
+
     );
 }
  
