@@ -1,7 +1,11 @@
+import Topbar from "../../component/topbar/Topbar";
+
 const Dashboard = () => {
     return ( 
         <section>
-            dashboard
+            <nav>
+                <Topbar />
+            </nav>
         </section>
      );
 }
