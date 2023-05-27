@@ -1,14 +1,17 @@
 import { Avatar } from '@mui/material';
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 const Topbar = () => {
 
-    const [avatarImage, setAvatarImage] = useState(null);
+    const [avatarImage, setAvatarImage] = useState(
+        JSON.parse(localStorage.getItem("is-open")) || null
+    );
 
     const handleAvatarClick = () => {
         // Programmatically trigger the file input click
         document.getElementById('avatar-input').click();
+        setAvatarImage(avatarImage);
       };
 
       const handleImageUpload = (event) => {
@@ -21,6 +24,10 @@ const Topbar = () => {
     
         reader.readAsDataURL(file);
       };
+
+      useEffect(() => {
+        localStorage.setItem("is-open", JSON.stringify(avatarImage));
+    }, [avatarImage])
 
     return (  
         <section>
