@@ -1,11 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BookList = () => {
+
+    const navigate = useNavigate();
+
     return (  
         <section className="container mx-auto my-8">
             <section className="h-12">
-                <button type="button"  className="rounded bg-slate-600 text-white md:px-14 
-                px-6 py-2 font-semibold md:ml-[-8px] ml-4">
+                <button 
+                    type="button"  
+                    className="rounded bg-slate-600 text-white md:px-14 
+                    px-6 py-2 font-semibold md:ml-[-8px] ml-4"
+                    onClick={() => navigate("/add-book")}
+                >
                     Add Books
                 </button>
             </section>

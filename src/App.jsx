@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from "./pages/dashboard/Dashboard";
 import ForgetPassword from "./pages/change-password/ForgetPassword";
 import BookList from "./pages/books/BookList";
+import AddBook from "./pages/books/AddBook";
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/password-reset" element={<ForgetPassword />} />
         <Route exact path="/book-list" element={<BookList />} />
+        <Route exact path="/add-book" element={<AddBook />} />
       </Routes>
       </BrowserRouter>
     </>
