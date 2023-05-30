@@ -28,9 +28,9 @@ function App() {
       <Routes>
         <Route index="/" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/user" element={<Dashboard />} />
         <Route exact path="/password-reset" element={<ForgetPassword />} />
-        <Route exact path="/dashboard" element={<BookList />} />
+        <Route exact path="/user" element={<BookList />} />
         <Route exact path="/add-book" element={<AddBook />} />
       </Routes>
       </BrowserRouter>

@@ -54,7 +54,7 @@ const Login = () => {
         if(response.data.message == "Email does not exists"){
             toast.error("Email does not exists");
         } else if(response.data.message == "Login Successful"){
-            navigate("/dashboard");
+            navigate("/user");
         }else {
             toast.error("Email or Password not match");
         }

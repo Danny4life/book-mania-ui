@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Topbar from "../../component/topbar/Topbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import CreateBookService from "../../services/CreateBookService";
 
 const AddBook = () => {
+
+    const {id} = useParams();
+    const navigate = useNavigate();
 
     const [bookDto, setBookDto] = useState({
 
@@ -16,6 +20,19 @@ const AddBook = () => {
     const handleChange = (e) => {
         const value = e.target.value;
         setBookDto({ ...bookDto, [e.target.name] : value});
+
+    }
+
+    const createBook = (e) => {
+        e.preventDefault();
+        CreateBookService.createBook(bookDto, id).then((response) => {
+            setBookDto(response);
+            navigate("/user");
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 
     }
 
@@ -38,7 +55,7 @@ const AddBook = () => {
             </nav>
             <div>
                 <h4 className="md:ml-20 pt-4 pb-10 ml-4 text-[#012A4A]">
-                    <Link to={"/dashboard"}>Go Back</Link>
+                    <Link to={"/user"}>Go Back</Link>
                 </h4>
             </div>
             <section className="max-w-2xl flex shadow border-b mx-auto">
@@ -46,7 +63,7 @@ const AddBook = () => {
                     <div className="font-thin text-2xl tracking">
                         <h1 className="md:text-2xl text-base font-bold text-[#012A4A]">Add New Book</h1>
                     </div>
-                    <form action="#">
+                    <form action="#" onSubmit={createBook}>
                         <div className="items-center justify-center h-14 w-full my-4">
                             <label htmlFor="title" className="block text-gray-600 font-normal text-sm">
                                 Title
@@ -105,7 +122,7 @@ const AddBook = () => {
                         </div>
                         <div className="items-center justify-center h-14 w-full my-4 space-x-8 pt-12 pb-8">
                             <button 
-                                type="button"
+                                type="submit"
                                 className="bg-green-400 hover:bg-green-700 px-6 py-2 rounded text-white font-semibold md:w-44 w-36"
                             >
                                 Save
