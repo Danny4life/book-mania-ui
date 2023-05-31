@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/user" element={<Dashboard />} />
         <Route exact path="/password-reset" element={<ForgetPassword />} />
         <Route exact path="/user" element={<BookList />} />
-        <Route exact path="/add-book" element={<AddBook />} />
+        <Route exact path="/add-book/:id" element={<AddBook />} />
       </Routes>
       </BrowserRouter>
     </>

@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 const Signup = () => {
 
     const navigate = useNavigate();
-
+    
     const [userDto, setUserDto] = useState({
         id : "",
         firstname : "",
@@ -81,13 +81,12 @@ const Signup = () => {
         setUserDto({...userDto, [e.target.name]: e.target.value});
     }
 
-    const registerUser = (e) => {
+    const registerUser = async (e) => {
         e.preventDefault();
-        UserService.registerUser(userDto).then((response) => {
+        await UserService.registerUser(userDto).then((response) =>  {
             setUserDto(response);
             
             //console.log(response);
-
             if(response.data.message == "Email Already Exists"){
                 toast.error("Email Already Exists");
                

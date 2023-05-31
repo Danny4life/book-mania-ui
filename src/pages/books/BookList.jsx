@@ -4,6 +4,13 @@ const BookList = () => {
 
     const navigate = useNavigate();
 
+    const addBook = (e, id) => {
+        e.preventDefault();
+
+        navigate(`/add-book/${id}`);
+
+    }
+
     return (  
         <section className="container mx-auto my-8">
             <section className="h-12">
@@ -11,7 +18,7 @@ const BookList = () => {
                     type="button"  
                     className="rounded bg-slate-600 text-white md:px-14 
                     px-6 py-2 font-semibold md:ml-[-8px] ml-4"
-                    onClick={() => navigate("/add-book")}
+                    onClick={(e, id) => addBook(e, id)}
                 >
                     Add Books
                 </button>
