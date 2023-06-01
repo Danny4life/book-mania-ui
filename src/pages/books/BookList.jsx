@@ -1,29 +1,10 @@
-//import { useEffect, useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
-//import GetAllBooksByUser from "../../services/GetAllBooksByUser";
+
 
 const BookList = () => {
 
     const navigate = useNavigate();
-
-    // const [loading, setLoading] = useState(true);
-    // const [bookDtos, setBookDtos] = useState()
-
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         setLoading(true);
-
-    //         try{
-    //             const response = await GetAllBooksByUser.getAllBooksByUserId();
-    //             setBookDtos(response.data);
-    //         }catch(error)  {
-    //             console.log(error);
-    //         }
-    //         setLoading(false);
-    //     };
-    //     fetchData();
-    // }, []);
 
     const addBook = (e, id) => {
         e.preventDefault();
@@ -44,21 +25,6 @@ const BookList = () => {
                     Add Books
                 </button>
             </section>
-            {/* {!loading && (
-                <div>
-                    {bookDtos.map((bookDto) => (
-                        <a href="#"
-                        key={bookDto.id}
-                        onClick={(e, id) => addBook(e, bookDto.id)}
-                        >
-
-                        </a>
-                    ))}
-                </div>
-            )} */}
-            <div>
-
-            </div>
             <section className="flex shadow border-b md:ml-[-8px] ml-4">
                 <table className="min-w-full flex md:flex-col justify-between">
                     <thead className="bg-gray-50">
