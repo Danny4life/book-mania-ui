@@ -7,6 +7,12 @@ class UserService{
         return axios.post(USER_API_BASE_URL, userDto);
     }
 
+
+    getUserById(id){
+        return axios.get(USER_API_BASE_URL + "/" + id);
+
+    }
+
 }
 
 export default new UserService();

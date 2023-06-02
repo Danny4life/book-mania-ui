@@ -47,8 +47,12 @@ const Topbar = () => {
                                 </span>
                         
                                 )}
-                                <h3><span className='text-[#012A4A] text-base font-normal'>Segun</span></h3>
-                            </div>  
+                                <h3 className='space-x-1'>
+                                    <span className='text-[#012A4A] text-base font-normal'>Segun</span>
+                                    <span className='text-[#012A4A] text-base font-normal'>Osiki</span>
+                                </h3>
+                            </div> 
+                            <h4 className='ml-2'>segun@gmail.com</h4> 
                         </div>
                         <input
                             id="avatar-input"

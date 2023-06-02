@@ -81,9 +81,9 @@ const Signup = () => {
         setUserDto({...userDto, [e.target.name]: e.target.value});
     }
 
-    const registerUser = async (e) => {
+    const registerUser = (e) => {
         e.preventDefault();
-        await UserService.registerUser(userDto).then((response) =>  {
+        UserService.registerUser(userDto).then((response) =>  {
             setUserDto(response);
             
             //console.log(response);
