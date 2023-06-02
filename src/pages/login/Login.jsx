@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
 
+
     const navigate = useNavigate();
 
     const [loginDto, setLoginDto] = useState({
@@ -45,7 +46,7 @@ const Login = () => {
     setLoginDto({...loginDto, [e.target.name] : e.target.value});
   }
 
-  const loginUser = (e) => {
+  const loginUser = (e, id) => {
     e.preventDefault();
     LoginService.loginUser(loginDto).then((response) => {
         setLoginDto(response);
@@ -54,7 +55,7 @@ const Login = () => {
         if(response.data.message == "Email does not exists"){
             toast.error("Email does not exists");
         } else if(response.data.message == "Login Successful"){
-            navigate("/user");
+            navigate(`/user/${id}`);
         }else {
             toast.error("Email or Password not match");
         }

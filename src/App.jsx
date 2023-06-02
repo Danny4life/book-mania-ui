@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route index="/" element={<Signup />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/user" element={<Dashboard />} />
+        <Route exact path="/user/:id" element={<Dashboard />} />
         <Route exact path="/password-reset" element={<ForgetPassword />} />
         <Route exact path="/user" element={<BookList />} />
         <Route exact path="/add-book/:id" element={<AddBook />} />
