@@ -2,7 +2,38 @@ import { Avatar } from '@mui/material';
 import  { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
+
+import { useParams } from "react-router-dom";
+import UserService from '../../services/UserService';
+
 const Topbar = () => {
+
+    const {id} = useParams();
+
+    const [userDto, setUserDto] = useState({
+
+        id : "",
+        firstname : "",
+        lastname : "",
+        email : "",
+    });
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setUserDto({...userDto, [e.target.name] : value});
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await UserService.getUserById(id);
+                setUserDto(response.data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, [id]);
 
     const [avatarImage, setAvatarImage] = useState(
         JSON.parse(localStorage.getItem("is-open")) || null
@@ -48,11 +79,26 @@ const Topbar = () => {
                         
                                 )}
                                 <h3 className='space-x-1'>
-                                    <span className='text-[#012A4A] text-base font-normal'>Segun</span>
-                                    <span className='text-[#012A4A] text-base font-normal'>Osiki</span>
+                                    <span 
+                                    className='text-[#012A4A] text-base font-normal'
+                                    name="firstname" onChange={(e) => handleChange(e)}
+                                    >
+                                        {userDto.firstname}
+                                    </span>
+                                    <span 
+                                    className='text-[#012A4A] text-base font-normal'
+                                    name="lastname" onChange={(e) => handleChange(e)}
+                                    >
+                                         {userDto.lastname}
+                                    </span>
                                 </h3>
                             </div> 
-                            <h4 className='ml-2'>segun@gmail.com</h4> 
+                            <h4 
+                            className='ml-2'
+                            name="email" onChange={(e) => handleChange(e)}
+                            >
+                                {userDto.email}
+                            </h4> 
                         </div>
                         <input
                             id="avatar-input"

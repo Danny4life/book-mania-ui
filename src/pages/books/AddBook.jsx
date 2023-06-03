@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Topbar from "../../component/topbar/Topbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import CreateBookService from "../../services/CreateBookService";
+//import CreateBookService from "../../services/CreateBookService";
 
 const AddBook = () => {
 
     const {id} = useParams();
-    const navigate = useNavigate();
+     const navigate = useNavigate();
 
     const [bookDto, setBookDto] = useState({
 
@@ -17,23 +17,32 @@ const AddBook = () => {
         bookStatus : "",
     });
 
+
+
     const handleChange = (e) => {
         const value = e.target.value;
         setBookDto({ ...bookDto, [e.target.name] : value});
 
     }
 
-    const createBook = (e) => {
-        e.preventDefault();
-        CreateBookService.createBook(bookDto, id).then((response) => {
-            setBookDto(response);
-            navigate("/user");
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    // const createBook = (e) => {
+    //     e.preventDefault();
+    //     CreateBookService.createBook(bookDto, id).then((response) => {
+    //         setBookDto(response);
+    //         navigate("/book-list");
+    //         console.log(response);
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
 
+    // }
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+        console.log(bookDto);
+        navigate("/book-list")
     }
 
 
@@ -55,7 +64,7 @@ const AddBook = () => {
             </nav>
             <div>
                 <h4 className="md:ml-20 pt-4 pb-10 ml-4 text-[#012A4A]">
-                    <Link to={"/user"}>Go Back</Link>
+                    <Link to={`/book-list/${id}`}>Go Back</Link>
                 </h4>
             </div>
             <section className="max-w-2xl flex shadow border-b mx-auto">
@@ -63,7 +72,7 @@ const AddBook = () => {
                     <div className="font-thin text-2xl tracking">
                         <h1 className="md:text-2xl text-base font-bold text-[#012A4A]">Add New Book</h1>
                     </div>
-                    <form action="#" onSubmit={createBook}>
+                    <form action="#" onSubmit={handleSubmit}>
                         <div className="items-center justify-center h-14 w-full my-4">
                             <label htmlFor="title" className="block text-gray-600 font-normal text-sm">
                                 Title

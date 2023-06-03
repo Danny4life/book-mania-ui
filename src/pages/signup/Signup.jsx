@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import signupImg from "../../assets/bookImg.jpg";
 import FormInput from "../../component/formInput/FormInput";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserService from "../../services/UserService";
 import { toast } from "react-toastify";
 
 
 const Signup = () => {
 
-    const {id} = useParams();
+  
     const navigate = useNavigate();
     
     const [userDto, setUserDto] = useState({
@@ -81,18 +81,6 @@ const Signup = () => {
     const onChange = (e) => {
         setUserDto({...userDto, [e.target.name]: e.target.value});
     }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await UserService.getUserById(id);
-                setUserDto(response.data);
-            }catch(error){
-                console.log(error);
-            }
-        }
-        fetchData();
-    }, [id])
 
     const registerUser = (e) => {
         e.preventDefault();

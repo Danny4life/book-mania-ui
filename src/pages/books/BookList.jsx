@@ -6,10 +6,10 @@ const BookList = () => {
 
     const navigate = useNavigate();
 
-    const addBook = (e, id) => {
+    const addBook = (e) => {
         e.preventDefault();
 
-        navigate(`/add-book/${id}`);
+        navigate("/add-book");
 
     }
 
@@ -20,7 +20,7 @@ const BookList = () => {
                     type="button"  
                     className="rounded bg-slate-600 text-white md:px-14 
                     px-6 py-2 font-semibold md:ml-[-8px] ml-4"
-                    onClick={(e, id) => addBook(e, id)}
+                    onClick={addBook}
                 >
                     Add Books
                 </button>

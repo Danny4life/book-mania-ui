@@ -1,7 +1,7 @@
 import { useState } from "react";
 import loginImg from "../../assets/bookImg2.jpg";
 import FormInput from "../../component/formInput/FormInput";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LoginService from "../../services/LoginService";
 import { toast } from 'react-toastify';
 
@@ -9,10 +9,13 @@ import { toast } from 'react-toastify';
 const Login = () => {
 
 
+    const {id} = useParams();
+
     const navigate = useNavigate();
 
     const [loginDto, setLoginDto] = useState({
 
+        id : "",
         email : "",
         password : "",
     });
@@ -46,7 +49,7 @@ const Login = () => {
     setLoginDto({...loginDto, [e.target.name] : e.target.value});
   }
 
-  const loginUser = (e, id) => {
+  const loginUser = (e) => {
     e.preventDefault();
     LoginService.loginUser(loginDto).then((response) => {
         setLoginDto(response);
@@ -55,7 +58,7 @@ const Login = () => {
         if(response.data.message == "Email does not exists"){
             toast.error("Email does not exists");
         } else if(response.data.message == "Login Successful"){
-            navigate(`/user/${id}`);
+            navigate(`/book-list/${id}`);
         }else {
             toast.error("Email or Password not match");
         }
